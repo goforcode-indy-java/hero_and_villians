@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Monsters and Villains</title>
+</head>
+<body>
+	<!-- stuff -->
+	<h1>Meet our hero!</h1>
+	name: {{ hero.getName }}
+	<br>
+	health: {{ hero.getHealth }}
+	<br>
+	secret identity:  {{ hero.getSecretIdentity }}
+	<br>
+	is alive?: {{ hero.isAlive }}
+	
+	<h1>Meet our monster!</h1>
+	name: {{ monster.getName }}
+	<br>
+	health: {{ monster.getHealth }}
+	<br>
+	classification: {{ monster.getClassification }}
+	<br>
+	is alive?: {{ monster.isAlive }}
+	
+	<br>
+	<br>
+	<br>
+	<hr>
+	
+	{{^hero.isAlive}}
+		<h1>{{ monster.getName }} the {{ monster.getClassification }} bested {{ hero.getSecretIdentity }}</h1>
+	{{/hero.isAlive}}
+	
+	{{^monster.isAlive}}
+		<h1>{{ hero.getSecretIdentity }} bested {{ monster.getName }} the {{ monster.getClassification }}</h1>
+	{{/monster.isAlive}}
+	
+	{{^isGameOver}}
+		<form action="/attack" method="post">
+			<button>Make hero attack monster</button>
+		</form>
+		
+		<form action="/fight" method="post">
+			<button>Fight to the death</button>
+		</form>
+	{{/isGameOver}}
+	
+	<form action="/reset" method="post">
+		<button>Reset Game</button>
+	</form>
+	
+</body>
+</html>
