@@ -15,33 +15,35 @@
 	<br>
 	is alive?: {{ hero.isAlive }}
 	
-	<h1>Meet our monster!</h1>
-	name: {{ monster.getName }}
-	<br>
-	health: {{ monster.getHealth }}
-	<br>
-	classification: {{ monster.getClassification }}
-	<br>
-	is alive?: {{ monster.isAlive }}
+	<h1>Meet our monsters!</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>name</th>
+				<th>classification</th>
+				<th>health</th>
+				<th>is Alive?</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#monsters}}
+				<tr>
+					<td>{{ this.getName }}</td>
+					<td>{{ this.getClassification }}</td>
+					<td>{{ this.getHealth }}</td>
+					<td>{{ this.isAlive }}</td>
+				</tr>
+			{{/monsters}}
+		</tbody>
+	</table>
 	
 	<br>
 	<br>
 	<br>
 	<hr>
 	
-	{{^hero.isAlive}}
-		<h1>{{ monster.getName }} the {{ monster.getClassification }} bested {{ hero.getSecretIdentity }}</h1>
-	{{/hero.isAlive}}
 	
-	{{^monster.isAlive}}
-		<h1>{{ hero.getSecretIdentity }} bested {{ monster.getName }} the {{ monster.getClassification }}</h1>
-	{{/monster.isAlive}}
-	
-	{{^isGameOver}}
-		<form action="/attack" method="post">
-			<button>Make hero attack monster</button>
-		</form>
-		
+	{{^isGameOver}}Z
 		<form action="/fight" method="post">
 			<button>Fight to the death</button>
 		</form>
