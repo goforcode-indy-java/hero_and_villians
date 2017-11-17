@@ -15,7 +15,7 @@
 	<br>
 	is alive?: {{ hero.isAlive }}
 	
-	<h1>Meet our monsters!</h1>
+	<h1>Meet our villains!</h1>
 	<table>
 		<thead>
 			<tr>
@@ -26,14 +26,14 @@
 			</tr>
 		</thead>
 		<tbody>
-			{{#monsters}}
+			{{#villains}}
 				<tr>
 					<td>{{ this.getName }}</td>
 					<td>{{ this.getClassification }}</td>
 					<td>{{ this.getHealth }}</td>
 					<td>{{ this.isAlive }}</td>
 				</tr>
-			{{/monsters}}
+			{{/villains}}
 		</tbody>
 	</table>
 	
@@ -42,11 +42,26 @@
 	<br>
 	<hr>
 	
-	
+	<!-- if game is not over show fight button -->
 	{{^isGameOver}}
 		<form action="/fight" method="post">
 			<button>Fight to the death</button>
 		</form>
+	{{/isGameOver}}
+	
+	<!-- if game is not over show results -->
+	{{#isGameOver}}
+	
+		<!-- if hero is alive -->
+		{{#hero.isAlive}}
+			<h2>{{ hero.getSecretIdentity }} beat the monsters </h2>
+		{{/hero.isAlive}}
+		
+		<!-- if hero is NOT alive -->
+		{{^hero.isAlive}}
+			<h2>The monsters beat {{ hero.getSecretIdentity }}</h2>
+		{{/hero.isAlive}}
+		
 	{{/isGameOver}}
 	
 	<form action="/reset" method="post">
