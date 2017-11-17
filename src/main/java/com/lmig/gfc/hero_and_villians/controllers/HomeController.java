@@ -35,7 +35,11 @@ public class HomeController {
 	public ModelAndView fightPage() {
 		ModelAndView mv = new ModelAndView();
 		
+		Monster lastMonster = null;
+		
 		for(Monster monster : ourMonsters) {
+			
+			lastMonster = monster;
 			
 			while(ourHero.isAlive() && monster.isAlive()) {
 				ourHero.attack(monster);
@@ -46,6 +50,10 @@ public class HomeController {
 				break;
 			}
 			
+		}
+		
+		if(!ourHero.isAlive()) {
+			mv.addObject("victoriousMonster", lastMonster);
 		}
 		
 		mv.addObject("monsters", ourMonsters);

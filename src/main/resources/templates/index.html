@@ -58,7 +58,7 @@
 		
 		<!-- if hero is NOT alive -->
 		{{^hero.isAlive}}
-			<h2>The monsters beat {{ hero.getSecretIdentity }}</h2>
+			<h2>{{ victoriousMonster.getName }} the {{ victoriousMonster.getClassification }} beat {{ hero.getSecretIdentity }}</h2>
 		{{/hero.isAlive}}
 		
 	{{/isGameOver}}
