@@ -13,7 +13,7 @@ import com.lmig.gfc.hero_and_villians.models.Monster;
 @Controller
 public class HomeController {
 	
-	private ArrayList<LivingThing> ourVillains;
+	private ArrayList<Monster> ourMonsters;
 	private Hero ourHero;
 	
 	public HomeController() {
@@ -23,7 +23,7 @@ public class HomeController {
 	@RequestMapping("/")
 	public ModelAndView defaultPage() {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("villains", ourVillains);
+		mv.addObject("monsters", ourMonsters);
 		mv.addObject("hero", ourHero);
 		
 		mv.setViewName("index");
@@ -35,10 +35,10 @@ public class HomeController {
 	public ModelAndView fightPage() {
 		ModelAndView mv = new ModelAndView();
 		
-		for(LivingThing livingThing : ourVillains) {
+		for(Monster monster : ourMonsters) {
 			
-			while(ourHero.isAlive() && livingThing.isAlive()) {
-				ourHero.attack(livingThing);
+			while(ourHero.isAlive() && monster.isAlive()) {
+				ourHero.attack(monster);
 			}
 			
 			//if the game is over lets just stop
@@ -48,7 +48,7 @@ public class HomeController {
 			
 		}
 		
-		mv.addObject("villains", ourVillains);
+		mv.addObject("monsters", ourMonsters);
 		mv.addObject("hero", ourHero);
 		mv.addObject("isGameOver", this.isGameOver());
 		
@@ -62,7 +62,7 @@ public class HomeController {
 		
 		this.initGame();
 		
-		mv.addObject("villains", ourVillains);
+		mv.addObject("monsters", ourMonsters);
 		mv.addObject("hero", ourHero);
 		
 		mv.setViewName("index"); 
@@ -81,8 +81,8 @@ public class HomeController {
 		
 		//assume all dead
 		boolean isOver = true;
-		for(LivingThing livingThing : ourVillains) {
-			if(livingThing.isAlive()) {
+		for(Monster monster : ourMonsters) {
+			if(monster.isAlive()) {
 				
 				//if we find one alive, set is over to false
 				isOver = false;
@@ -95,7 +95,7 @@ public class HomeController {
 	
 	public void initGame() {
 		
-		ourVillains = new ArrayList<LivingThing>();
+		ourMonsters = new ArrayList<Monster>();
 		
 		Monster monster1 = new Monster("Steve", 80, "Ogre");
 		Monster monster2 = new Monster("Bob", 75, "Vampire");
@@ -103,13 +103,13 @@ public class HomeController {
 		Monster monster4 = new Monster("Billy", 100, "Psycho Killer Monster");
 		Monster monster5 = new Monster("Doug", 20, "Coding Monster");
 		
-		ourVillains.add(monster1);
-		ourVillains.add(monster2);
-		ourVillains.add(monster3);
-		ourVillains.add(monster4);
-		ourVillains.add(monster5);
+		ourMonsters.add(monster1);
+		ourMonsters.add(monster2);
+		ourMonsters.add(monster3);
+		ourMonsters.add(monster4);
+		ourMonsters.add(monster5);
 		
-		ourHero = new Hero("Clark Kent", 350, "Superman"); 
+		ourHero = new Hero("Clark Kent", 375, "Superman"); 
 	}
 	
 }
